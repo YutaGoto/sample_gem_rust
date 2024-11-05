@@ -1,0 +1,26 @@
+name: rake
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  rake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - name: install dependencies
+        run: bundle install
+      - name: run rake
+        run: bundle exec rake
