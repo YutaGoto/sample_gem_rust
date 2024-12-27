@@ -10,3 +10,8 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     module.define_singleton_method("hello", function!(hello, 1))?;
     Ok(())
 }
+
+#[test]
+fn test_hello() {
+    assert_eq!(hello("world".to_string()), "Hello from Rust, world!");
+}
