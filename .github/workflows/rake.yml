@@ -9,11 +9,14 @@ on:
 jobs:
   rake:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: [3.0, 3.1, 3.2, 3.3, 3.4, "head"]
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
+          ruby-version: ${{ matrix.ruby }}
       - name: Install stable toolchain
         uses: actions-rs/toolchain@v1
         with:
