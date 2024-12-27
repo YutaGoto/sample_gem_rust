@@ -20,11 +20,9 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
       - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@v1
         with:
-          profile: minimal
           toolchain: stable
-          override: true
       - name: install dependencies
         run: bundle install
       - name: run rake
